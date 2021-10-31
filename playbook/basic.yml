@@ -2,3 +2,5 @@
   tasks:
   - name: Task base
     ping:
+  - name: Crea i file
+    command: touch "{{ test_file }}"
