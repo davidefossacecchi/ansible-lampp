@@ -1,0 +1,35 @@
+- hosts: prod
+  become: yes
+  tasks:
+    - name: Install LAMPP packages on remote
+      apt:
+        update_cache: yes
+        pkg:
+          - apache2
+          - mysql-server
+          - php
+          - php-mysql
+        state: latest
+      notify:
+        - start apache2
+        - start mysql-server
+        - deploy index.html
+
+  handlers:
+    - name: start apache2
+      service:
+        name: apache2
+        state: started
+        # rende il servizio avviato automaticamente al riavvio del server
+        enabled: yes
+    - name: start mysql-server
+      service:
+        name: mysql
+        state: started
+        enabled: yes
+    - name: deploy index.html
+      copy:
+        src: /home/davide/Workspace/ansible/index.html
+        dest: /var/www/html/index.html
+
+
