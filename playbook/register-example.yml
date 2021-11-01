@@ -1,0 +1,8 @@
+- hosts: dev
+  become: yes
+  tasks:
+    - name: check the java version
+      command: "java -version"
+      register: javaver
+    - debug:
+        msg: "Java version {{ javaver.stderr }}"
