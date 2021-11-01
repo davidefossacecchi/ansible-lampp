@@ -1,0 +1,7 @@
+- hosts: dev
+  tasks:
+    - name: Cereate a simple file using shell module
+      shell: touch mytestfile.txt
+      args:
+          chdir: /home/vagrant
+          creates: mytestfile.txt
