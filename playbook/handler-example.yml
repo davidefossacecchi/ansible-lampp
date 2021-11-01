@@ -1,0 +1,16 @@
+- hosts: dev
+  become: yes
+  tasks:
+    - name: Deploy custom ssh config in remote
+      #https://docs.ansible.com/ansible/latest/collections/ansible/builtin/template_module.html
+      template:
+        src: /etc/ssh/ssh_config
+        dest: /etc/ssh/ssh_config
+      notify:
+        - restart ssh
+
+  handlers:
+    - name: restart ssh
+      service:
+        name: ssh
+        state: restarted
