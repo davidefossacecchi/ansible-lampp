@@ -1,0 +1,10 @@
+- hosts: dev
+  become: yes
+  tasks:
+    - name: This will install apache on remote
+      # modulo apt che serve per gestire i pacchetti apt su debian/ubuntu
+      # https://docs.ansible.com/ansible/2.8/modules/apt_module.html?highlight=apt
+      apt:
+        name=apache2
+        update_cache=yes
+        state=latest
