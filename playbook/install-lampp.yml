@@ -1,4 +1,4 @@
-- hosts: prod
+- hosts: dev
   become: yes
   tasks:
     - name: Install LAMPP packages on remote
